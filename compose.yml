@@ -1,0 +1,22 @@
+networks:
+  traefik:
+    name: traefik_default
+    external: true
+    
+services:
+  server:
+    networks: [ traefik ]
+    build: ./
+    init: true
+    volumes:
+      - ./src:/app
+    devices:
+      - /dev/video10
+    working_dir: /app
+    command: run ./server.js
+    expose: [ 8000 ]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-server-https.rule=Host(`webcam.proxy.example.com`)
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-server-https.entrypoints=https
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-server-https.tls=true

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        #localVideo {
+            max-width: 100%;
+            max-height: 50vh;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+          background-color: #0066cc;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 12px 24px;
+          font-size: 16px;
+          margin: 20px 0;
+          cursor: pointer;
+        }
+
+        button:disabled {
+          background-color: #cccccc;
+        }
+        .status {
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Stream</h1>
+    <video id="localVideo" autoplay playsinline muted></video>
+    <div>
+        <button id="startButton">Start Camera</button>
+        <button id="stopButton" disabled>Stop Camera</button>
+    </div>
+    <div id="status" class="status">Disconnected</div>
+
+    <script src="./video-streamer.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+</body>
+</html>
